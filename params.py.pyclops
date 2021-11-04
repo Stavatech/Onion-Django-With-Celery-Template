@@ -1,0 +1,31 @@
+import os
+
+
+project_name = "{{ project_name }}"
+
+github_repo = "{{ project_name }}"
+github_owner = "{{ git_owner }}"
+github_token = os.getenv('GITHUB_TOKEN')
+git_branch = "{{ git_branch }}"
+
+load_balancer_path = "/"
+load_balancer_priority = 1
+
+ecr_repo = os.getenv("REPO_URI", "")
+image_tag = os.getenv("IMAGE_TAG", "latest")
+
+"""
+The 'stages' parameter is a special parameter where stage-specific values can be
+specified. These stage-specific values are accessed in the service.config.json.jinja
+templates using 'stage_<param_name>' e.g. stage_container_count, stage_container_port, etc.
+"""
+stages = {
+    "staging": {
+        "container_count": 1,
+        "container_port": 8000,
+        "container_cpu": 256,
+        "container_memory": 512,
+        "domain": None,
+        "hosted_zone_id": None
+    }
+}

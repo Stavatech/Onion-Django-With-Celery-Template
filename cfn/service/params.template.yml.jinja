@@ -1,0 +1,54 @@
+AWSTemplateFormatVersion: '2010-09-09'
+
+Parameters:
+  ServiceName:
+    Type: String
+    Description: ECS service name
+
+  Repository:
+    Type: String
+    Description: ECR repository
+
+  ImageTag:
+    Type: String
+    Description: ECR image tag (calculated by pyclops based on the commit hash)
+  
+  Stage:
+    Type: String
+    Description: The service stage e.g. beta/staging/production
+  
+  ContainerPort:
+    Type: Number
+    Description: What port number the application inside the docker container is binding to
+
+  ContainerCpu:
+    Type: Number
+    Description: How much CPU to give the container. 1024 is 1 CPU
+  
+  ContainerMemory:
+    Type: Number
+    Description: How much memory in megabytes to give the container
+  
+  DesiredCount:
+    Type: Number
+    Description: How many copies of the service task to run
+  
+  Path:
+    Type: String
+    Description: A path on the public load balancer that this service
+                 should be connected to. Use * to send all load balancer
+                 traffic to this service.
+  
+  Priority:
+    Type: Number
+    Description: The priority for the routing rule added to the load balancer.
+                 This only applies if your have multiple services which have been
+                 assigned to different paths on the load balancer.
+  
+  DomainName:
+    Type: String
+    Description: The API domain name
+  
+  HostedZoneId:
+    Type: String
+    Description: Hosted zone containing the domain

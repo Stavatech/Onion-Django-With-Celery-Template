@@ -1,0 +1,16 @@
+{
+  "Parameters" : {
+    "ServiceName": "{{ project_name }}",
+    "Repository": "{{ ecr_repo }}",
+    "ImageTag": "{{ image_tag }}",
+    "Stage": "{{ stage }}",
+    "ContainerPort": "{{ stage_container_port }}",
+    "ContainerCpu": "{{ stage_container_cpu }}",
+    "ContainerMemory": "{{ stage_container_memory }}", 
+    "DesiredCount": "{{ stage_container_count }}",
+    "Path": "{{ load_balancer_path }}",
+    "Priority": "{{ load_balancer_priority }}",
+    "DomainName": "{{ stage_domain }}",
+    "HostedZoneId": "{{ stage_hosted_zone_id }}"
+  }
+}

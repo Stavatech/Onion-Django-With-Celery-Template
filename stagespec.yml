@@ -1,0 +1,16 @@
+version: 0.2
+phases:
+  pre_build:
+    commands:
+      - echo Setting environment variables
+      - COMMIT_HASH=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
+      - IMAGE_TAG=${COMMIT_HASH:=latest}
+  build:
+    commands:
+      - echo Docker image built during build stage
+      - sed -i -e 's/@{domain}/'${DOMAIN}'/g' cfn/service.template.yml
+      - sed -i -e 's/@{stage}/'${STAGE}'/g' cfn/service.template.yml
+artifacts:
+  files: 
+    - cfn/service.template.yml
+    - cfn/service.config.yml
